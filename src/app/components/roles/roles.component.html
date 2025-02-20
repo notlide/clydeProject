@@ -1,0 +1,29 @@
+<p>roles works!</p>
+<div class="row">
+    <div class="col-3">
+        <p>{{firstName}}</p>
+    </div>
+    <div class="col-3">
+        <p>{{version}}</p>
+    </div>
+    <div class="col-3">
+        <p>{{currentDate}}</p>
+    </div>
+</div>
+<div class="row">
+    <p>{{text}}</p>
+    <input type="text" [value]="firstName">
+    <div class="col-3">
+        <input type="text" [(ngModel)] = "text">
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showMessage()"> Show message</button>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showMessageAlert('Show message alert')"> Show alert message</button>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="clickMe()"> Click me</button>
+    </div>
+    <p>{{defaultData}}</p>
+</div>
