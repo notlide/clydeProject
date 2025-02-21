@@ -1,31 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
+import { IResponse, IRole } from '../../model/interface/roles.interface';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-roles',
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './roles.component.html',
   styleUrl: './roles.component.css'
 })
-export class RolesComponent {
+export class RolesComponent implements OnInit{
 
-  firstName : string = "Angular Tutorials";
-  version : string = "18";
-  defaultData : number = 0;
-  currentDate : Date = new Date();
+  public allRoles : IRole [] = [];
 
-  text : string = "";
+  public http = inject(HttpClient);
 
-  showMessage() : void {
-    alert("Show alert!");
+  ngOnInit(): void {
+    this.getAllRoles();
   }
 
-  showMessageAlert(message: string) {
-    alert(message);
+  public getAllRoles() {
+    this.http.get<IResponse>("/api/ClientStrive/GetAllRoles").subscribe((res:IResponse) => {
+      this.allRoles = res.data;
+    });
   }
-
-  clickMe(){
-    this.defaultData += 1;
-    console.log(this.defaultData) ;
-  } 
 }
