@@ -13,8 +13,17 @@ export class ClientService {
   public getAllClients(): Observable<IResponse> {
     return this.http.get<IResponse>('/api/ClientStrive/GetAllClients');
   }
+  public getAllEmployee(): Observable<IResponse> {
+    return this.http.get<IResponse>('/api/ClientStrive/GetAllEmployee');
+  }
   public addClient(data: Client): Observable<IResponse> {
     return this.http.post<IResponse>('/api/ClientStrive/AddUpdateClient', data);
+  }
+  public addClientProjectUpdate(data: Client): Observable<IResponse> {
+    return this.http.post<IResponse>(
+      '/api/ClientStrive/AddUpdateClientProject',
+      data
+    );
   }
   public deleteClient(id: number): Observable<IResponse> {
     return this.http.delete<IResponse>(
