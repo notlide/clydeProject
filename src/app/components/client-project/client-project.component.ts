@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../model/classes/client';
-import { IEmployee, IResponse } from '../../model/interface/roles.interface';
+import { IResponse } from '../../model/interface/roles.interface';
 
 @Component({
   selector: 'app-client-project',
@@ -28,7 +28,7 @@ export class ClientProjectComponent implements OnInit {
   });
 
   clientService = inject(ClientService);
-  employeeObj: IEmployee[] = [];
+  employeeObj: any[] = [];
   clientObj: Client[] = [];
 
   ngOnInit(): void {
