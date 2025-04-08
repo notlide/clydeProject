@@ -65,10 +65,10 @@
               "buildTarget": "clydeProject:build:development"
             }
           },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -84,13 +84,18 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+          "styles": [
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
+          "scripts": [
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+          ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e3837f08-5e93-4ad5-8bbf-2772d82b938f"
   }
 }
