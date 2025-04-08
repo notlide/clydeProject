@@ -3,10 +3,11 @@ import { Client } from '../../model/classes/client';
 import { FormsModule } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
 import { IResponse } from '../../model/interface/roles.interface';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-client',
-  imports: [FormsModule],
+  imports: [FormsModule, ButtonComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css',
 })
@@ -26,6 +27,7 @@ export class ClientComponent implements OnInit {
   }
 
   postClient(): void {
+    debugger;
     this.clientService.addClient(this.clientObj).subscribe((res: IResponse) => {
       if (res.result) {
         alert('Client successfully Added');

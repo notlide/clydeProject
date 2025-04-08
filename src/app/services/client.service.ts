@@ -13,6 +13,9 @@ export class ClientService {
   public getAllClients(): Observable<IResponse> {
     return this.http.get<IResponse>('/api/ClientStrive/GetAllClients');
   }
+  public getAllProject(): Observable<IResponse> {
+    return this.http.get<IResponse>('/api/ClientStrive/GetAllClientProjects');
+  }
   public getAllEmployee(): Observable<IResponse> {
     return this.http.get<IResponse>('/api/ClientStrive/GetAllEmployee');
   }

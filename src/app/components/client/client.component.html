@@ -176,8 +176,11 @@
                                 <button class="btn btn-secondary">Reset</button>
                             </div>
                             <div class="col-6 text-center">
-                                <button class="btn btn-success" [disabled]="!form.valid" (click)="postClient()">{{ clientObj.clientId !== 0 ? 'Update Client': 'Save Client' }}</button>
+                                <app-button [btnClass]="'btn btn-success'" (onClicked)="postClient()" [btnText]=" clientObj.clientId !== 0 ? 'Update Client': 'Save Client'"></app-button>
                             </div>
+                            <!-- <div class="col-6 text-center">
+                                <button class="btn btn-success" [disabled]="!form.valid" (click)="postClient()">{{ clientObj.clientId !== 0 ? 'Update Client': 'Save Client' }}</button>
+                            </div> -->
                         </div>
                     </div>
                 </form>

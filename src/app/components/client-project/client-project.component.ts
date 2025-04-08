@@ -1,19 +1,26 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../model/classes/client';
-import { IResponse } from '../../model/interface/roles.interface';
+import { IProject, IResponse } from '../../model/interface/roles.interface';
+import { DatePipe } from '@angular/common';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-client-project',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DatePipe, ButtonComponent],
   templateUrl: './client-project.component.html',
   styleUrl: './client-project.component.css',
 })
 export class ClientProjectComponent implements OnInit {
   projectForm: FormGroup = new FormGroup({
     clientProjectId: new FormControl(0),
-    projectName: new FormControl(''),
+    projectName: new FormControl('', [Validators.required]),
     startDate: new FormControl(''),
     expectedEndDate: new FormControl(''),
     leadByEmpId: new FormControl(''),
@@ -31,15 +38,25 @@ export class ClientProjectComponent implements OnInit {
   employeeObj: any[] = [];
   clientObj: Client[] = [];
 
+  projectList = signal<IProject[]>([]);
+
   ngOnInit(): void {
     this.fetchAllEmployee();
     this.fetchAllClient();
+    this.fetchAllProject();
   }
 
   fetchAllEmployee(): void {
     this.clientService.getAllEmployee().subscribe((res: IResponse) => {
       debugger;
       this.employeeObj = res.data;
+    });
+  }
+
+  fetchAllProject(): void {
+    this.clientService.getAllProject().subscribe((res: IResponse) => {
+      debugger;
+      this.projectList.set(res.data);
     });
   }
 
